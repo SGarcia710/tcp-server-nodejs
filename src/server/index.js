@@ -16,10 +16,15 @@ class TCPServer extends Server {
     });
 
     super.on('connection', (socket) => {
-      socket.on('data', (chunk) => {
-        console.log(`Data received from client: ${chunk.toString()}`);
-      });
+      socket.setEncoding('utf-8');
+      socket.setTimeout(1000);
 
+      socket.on('data', (chunk) => {
+        // Here we have the data from the client
+        console.log(`Data received from client: ${chunk.toString()}`);
+        socket.end();
+      });
+      // Response to the client
       socket.write('We got ya!');
 
       socket.on('error', (err) => {
