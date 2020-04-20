@@ -21,7 +21,7 @@ class TCPServer extends Server {
 
       socket.on('data', (chunk) => {
         // Here we have the data from the client
-        console.log(`Data received from client: ${chunk.toString()}`);
+        console.log(`Data received from client: ${chunk}`);
         socket.end();
       });
       // Response to the client
